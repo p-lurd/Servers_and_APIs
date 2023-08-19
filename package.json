@@ -8,6 +8,7 @@
     "start": "node index.js",
     "start:api": "node api.js",
     "start:dev": "nodemon node index.js",
+    "dev": "nodemon ./Assignment_3/app.js",
     "start:dev:api": "nodemon node api.js"
   },
   "keywords": [],
@@ -15,5 +16,8 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }

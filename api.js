@@ -152,7 +152,7 @@ const server = http.createServer((req, res) => {
                 console.log(err);
                 return
               } else {
-                console.log("written successfully");
+                console.log("deleted successfully");
               }
         });
         return response({
