@@ -9,6 +9,10 @@ const items = [];
 function postItem(req, res){
     const bodyOfRequest = req.body;
     console.log(bodyOfRequest);
+    if(!bodyOfRequest.name || !bodyOfRequest.price || !bodyOfRequest.size){
+        res.status(400);
+        return
+    }
     items.push({
       ...bodyOfRequest,
       id: Math.floor(Math.random() * 500).toString(),
@@ -62,7 +66,15 @@ function getOneItem(req, res){
 function updateItem(req, res){
     const itemUpdate = req.body
     const id = req.params.id
-
+    const objectKeys = Object.keys(itemUpdate)
+    const allowedKeys = ["name", "price", "size"]
+    const isValidOperation = objectKeys.every((update) => {
+        return allowedKeys.includes(update);
+    });
+    if (!isValidOperation){
+        res.status(400)
+        return
+    }
     const dbItems = fs.readFileSync(db)
     const parsedBody = JSON.parse(dbItems)
     const itemIndex = parsedBody.findIndex((data)=> data.id === id)
